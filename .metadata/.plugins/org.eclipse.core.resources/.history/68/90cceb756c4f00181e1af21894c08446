@@ -1,0 +1,17 @@
+
+public class MainClass {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","ciao");
+		ProcessoStampa p2=new ProcessoStampa("pc1","excel","io");
+		
+		System.out.println(p1.toString());
+		System.out.println(p2.toString());
+		
+
+	}
+
+}
