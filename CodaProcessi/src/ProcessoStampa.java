@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ProcessoStampa 
+public class ProcessoStampa implements Serializable
 {
 	
 	private String pc;
@@ -14,7 +15,8 @@ public class ProcessoStampa
 	public ProcessoStampa(String pc,String formatoFile,String nomeProcesso)
 	{
 	
-		
+		contatore++;
+		setCodiceID(contatore);
 		setPc(pc);
 		setFormatoFile(formatoFile);
 		setNomeProcesso(nomeProcesso);
@@ -62,7 +64,7 @@ public class ProcessoStampa
 	public String toString()
 	{
 		String processo="";
-		processo+=getPc()+" "+getFormatoFile()+" "+getNomeProcesso()+" "+dataOra+" ";
+		processo+=getCodiceID()+" "+getPc()+" "+getFormatoFile()+" "+getNomeProcesso()+" "+dataOra+" ";
 		return processo;
 	}
 
