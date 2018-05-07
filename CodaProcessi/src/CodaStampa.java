@@ -201,7 +201,7 @@ public class CodaStampa  implements Serializable
 	{
 		String risultato="Head";
 		if(elementi==0)
-			return risultato+="-->";
+			return risultato+="-->Vuota";
 		Nodo p=head;
 		while(p!=null)
 		{

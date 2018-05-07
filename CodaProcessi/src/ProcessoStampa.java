@@ -23,6 +23,15 @@ public class ProcessoStampa implements Serializable
 		dataOra=LocalDateTime.now();
 		
 	}
+	public ProcessoStampa()
+	{
+		contatore++;
+		setCodiceID(contatore);
+		this.pc="";
+		this.formatoFile="";
+		this.nomeProcesso="";
+		dataOra=LocalDateTime.now();
+	}
 	
 	
 	public String getPc() {
