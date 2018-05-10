@@ -69,4 +69,57 @@ public class CodaStampaTest {
 		ProcessoStampa[] elencoVerifica= {p3,p1};
 		assertArrayEquals("ProcessiPcAlfabetico",elencoVerifica,elenco);
 	}
+	
+
+	@Test (expected=GeneralException .class)
+	public void testProcessiPcAlfabeticoGeneralException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		ProcessoStampa p3=new ProcessoStampa("pc1","word","koala");
+		ProcessoStampa p4=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.aggiungiProcesso(p3);
+		s.aggiungiProcesso(p4);
+		
+		ProcessoStampa[] elenco=s.processiPcAlfabetico("pc3");
+	}
+	
+	@Test (expected=StampaException .class)
+	public void testProcessiPcAlfabeticoStampaException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa[] elenco=s.processiPcAlfabetico("pc3");
+	}
+	
+	@Test 
+	public void testGetProcesso() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		assertTrue("getProcesso",s.getProcesso(p1.getCodiceID())==p1);
+	}
+	
+	@Test (expected=StampaException .class)
+	public void testGetProcessoStampaException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		s.getProcesso(2);
+	}
+	
+	@Test (expected=GeneralException .class)
+	public void testGetProcessoGeneralException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.getProcesso(44);
+	}
 }
