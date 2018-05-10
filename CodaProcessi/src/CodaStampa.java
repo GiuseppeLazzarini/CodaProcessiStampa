@@ -122,8 +122,7 @@ public class CodaStampa  implements Serializable
 		throw new GeneralException("Nessun processo corriponde all'ID indicato");
 		
 	}
-	
-	
+
 	public void annullaStampa(int codice,String nameFile) throws StampaException, GeneralException, IOException, FileException
 	{
 		if(elementi==0)

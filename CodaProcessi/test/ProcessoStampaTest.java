@@ -45,7 +45,6 @@ public class ProcessoStampaTest
 		assertTrue("setNomeProcesso",p.getNomeProcesso().compareTo("ciao")==0);
 	}
 	
-	
-	
+
 
 }
