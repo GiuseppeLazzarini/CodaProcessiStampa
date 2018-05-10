@@ -1,0 +1,5 @@
+primo;pc1;word;
+va;pc1;powerpoint;
+va;pc1;powerpoint;
+ciao;pc1;word;
+2;2;2;

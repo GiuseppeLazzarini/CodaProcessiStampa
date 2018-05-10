@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ProcessoStampa 
+public class ProcessoStampa implements Serializable
 {
 	
 	private String pc;
@@ -14,12 +15,22 @@ public class ProcessoStampa
 	public ProcessoStampa(String pc,String formatoFile,String nomeProcesso)
 	{
 	
-		
+		contatore++;
+		setCodiceID(contatore);
 		setPc(pc);
 		setFormatoFile(formatoFile);
 		setNomeProcesso(nomeProcesso);
 		dataOra=LocalDateTime.now();
 		
+	}
+	public ProcessoStampa()
+	{
+		contatore++;
+		setCodiceID(contatore);
+		this.pc="";
+		this.formatoFile="";
+		this.nomeProcesso="";
+		dataOra=LocalDateTime.now();
 	}
 	
 	
@@ -59,10 +70,18 @@ public class ProcessoStampa
 		this.codiceID = codiceID;
 	}
 	
+	public boolean equals(ProcessoStampa p)
+	{
+		if (getCodiceID()==p.getCodiceID())
+			return true;
+		else
+			return false;
+	}
+	
 	public String toString()
 	{
 		String processo="";
-		processo+=getPc()+" "+getFormatoFile()+" "+getNomeProcesso()+" "+dataOra+" ";
+		processo+=getCodiceID()+" "+getPc()+" "+getFormatoFile()+" "+getNomeProcesso()+" "+dataOra+" ";
 		return processo;
 	}
 

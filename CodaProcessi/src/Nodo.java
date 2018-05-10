@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Nodo 
+public class Nodo implements Serializable
 {
 	private ProcessoStampa info;
 	private Nodo link;
@@ -25,4 +26,8 @@ public class Nodo
 	public void setLink(Nodo link) {
 		this.link = link;
 	}
+	
+	
+	
+	
 }
