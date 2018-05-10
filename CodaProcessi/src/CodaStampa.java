@@ -175,7 +175,7 @@ public class CodaStampa  implements Serializable
 		throw new GeneralException("Nessun processo corriponde all'ID indicato");
 	}
 	
-	public void portaInTesta (int codice) throws StampaException
+	public void portaInTesta (int codice) throws StampaException, GeneralException
 	{
 		if(elementi==0)
 			throw new StampaException("Nessun processo in fase di stampa");
@@ -198,6 +198,7 @@ public class CodaStampa  implements Serializable
 			}		
 			p=p.getLink();
 		}
+		throw new GeneralException("Nessun processo corriponde all'ID indicato");
 	}
 	
 	public String toString()

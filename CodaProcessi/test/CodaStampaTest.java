@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 public class CodaStampaTest {
@@ -122,4 +124,106 @@ public class CodaStampaTest {
 		s.aggiungiProcesso(p2);
 		s.getProcesso(44);
 	}
+	
+	@Test 
+	public void testAnnullaStampa1() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		s.aggiungiProcesso(p1);
+		s.annullaStampa(p1.getCodiceID(), "log.txt");
+		assertTrue("Annulla un processo",s.getHead()==null);
+	}
+	
+	@Test 
+	public void testAnnullaStampa2() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.annullaStampa(p2.getCodiceID(), "log.txt");
+		assertTrue("Annulla un processo con un solo processo",s.getElementi()==1 && s.getProcesso(p1.getCodiceID())==p1);
+	}
+	
+	@Test 
+	public void testAnnullaStampa3() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.annullaStampa(p2.getCodiceID(), "log.txt");
+		assertTrue("Annulla un processo il posizione 1",s.getElementi()==1 && s.getProcesso(p1.getCodiceID())==p1);
+	}
+	
+	@Test 
+	public void testAnnullaStampa4() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.annullaStampa(p1.getCodiceID(), "log.txt");
+		assertTrue("Annulla un processo ",s.getElementi()==1 && s.getProcesso(p2.getCodiceID())==p2);
+	}
+	
+	@Test (expected=StampaException .class)
+	public void testAnnullaStampaStampaException() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		s.annullaStampa(1, "log.txt");
+		
+	}
+	
+	@Test (expected=GeneralException .class)
+	public void testAnnullaStampaGeneralException() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.annullaStampa(200, "log.txt");
+	}
+	
+	@Test 
+	public void testPortaInTesta() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		ProcessoStampa p3=new ProcessoStampa("pc1","word","koala");
+		ProcessoStampa p4=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.aggiungiProcesso(p3);
+		s.aggiungiProcesso(p4);
+		s.portaInTesta(p2.getCodiceID());
+		assertTrue("Porta in testa processo ",s.stampaProcesso().equals(p2));
+	}
+	
+	@Test (expected=StampaException .class)
+	public void testPortaInTestaStampaException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		s.portaInTesta(2);
+		
+	}
+	
+	@Test (expected=GeneralException .class)
+	public void testPortaInTestaGeneralException() throws StampaException, GeneralException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.portaInTesta(333);
+	}
+	
+	
 }

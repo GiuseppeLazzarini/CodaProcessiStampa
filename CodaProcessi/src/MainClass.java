@@ -157,6 +157,10 @@ public class MainClass {
 				catch (IOException e) 
 				{
 					System.out.println("Errore sorgente informativa. Operazione annullata.");
+				} 
+				catch (GeneralException e) 
+				{
+					System.out.println(e.toString());
 				}
 			}
 			break;
