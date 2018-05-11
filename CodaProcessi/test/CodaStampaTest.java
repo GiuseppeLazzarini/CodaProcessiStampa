@@ -131,7 +131,7 @@ public class CodaStampaTest {
 		CodaStampa s=new CodaStampa();
 		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
 		s.aggiungiProcesso(p1);
-		s.annullaStampa(p1.getCodiceID(), "log.txt");
+		s.annullaStampa(p1.getCodiceID(), "logTest.txt");
 		assertTrue("Annulla un processo",s.getHead()==null);
 	}
 	
@@ -143,7 +143,7 @@ public class CodaStampaTest {
 		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
 		s.aggiungiProcesso(p1);
 		s.aggiungiProcesso(p2);
-		s.annullaStampa(p2.getCodiceID(), "log.txt");
+		s.annullaStampa(p2.getCodiceID(), "logTest.txt");
 		assertTrue("Annulla un processo con un solo processo",s.getElementi()==1 && s.getProcesso(p1.getCodiceID())==p1);
 	}
 	
@@ -155,7 +155,7 @@ public class CodaStampaTest {
 		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
 		s.aggiungiProcesso(p1);
 		s.aggiungiProcesso(p2);
-		s.annullaStampa(p2.getCodiceID(), "log.txt");
+		s.annullaStampa(p2.getCodiceID(), "logTest.txt");
 		assertTrue("Annulla un processo il posizione 1",s.getElementi()==1 && s.getProcesso(p1.getCodiceID())==p1);
 	}
 	
@@ -167,7 +167,7 @@ public class CodaStampaTest {
 		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
 		s.aggiungiProcesso(p1);
 		s.aggiungiProcesso(p2);
-		s.annullaStampa(p1.getCodiceID(), "log.txt");
+		s.annullaStampa(p1.getCodiceID(), "logTest.txt");
 		assertTrue("Annulla un processo ",s.getElementi()==1 && s.getProcesso(p2.getCodiceID())==p2);
 	}
 	
@@ -175,7 +175,7 @@ public class CodaStampaTest {
 	public void testAnnullaStampaStampaException() throws StampaException, GeneralException, IOException, FileException 
 	{
 		CodaStampa s=new CodaStampa();
-		s.annullaStampa(1, "log.txt");
+		s.annullaStampa(1, "logTest.txt");
 		
 	}
 	
@@ -188,6 +188,17 @@ public class CodaStampaTest {
 		s.aggiungiProcesso(p1);
 		s.aggiungiProcesso(p2);
 		s.annullaStampa(200, "log.txt");
+	}
+	
+	@Test (expected=IOException .class)
+	public void testAnnullaStampaIOException() throws StampaException, GeneralException, IOException, FileException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		ProcessoStampa p2=new ProcessoStampa("pc2","excel","ciao");
+		s.aggiungiProcesso(p1);
+		s.aggiungiProcesso(p2);
+		s.annullaStampa(p1.getCodiceID(), "Z:\\stampeProgetti\\p1_completate.txt");
 	}
 	
 	@Test 
@@ -223,6 +234,43 @@ public class CodaStampaTest {
 		s.aggiungiProcesso(p1);
 		s.aggiungiProcesso(p2);
 		s.portaInTesta(333);
+	}
+	
+	@Test 
+	public void testToStringVuoto() 
+	{
+		CodaStampa s=new CodaStampa();
+		assertTrue("toString ",s.toString().equals("Head-->Vuota"));
+	}
+	
+	@Test 
+	public void testToString() 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		s.aggiungiProcesso(p1);
+		String risultato="Head-->"+p1.toString();
+		assertTrue("toString ",s.toString().equals(risultato));
+	}
+	
+	@Test (expected=IOException .class)
+	public void testSerializzazioneEccezione() throws IOException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		s.aggiungiProcesso(p1);
+		s.salvaStampa("Z:\\stampeProgetti\\p1_completate.txt");
+	}
+	
+	@Test
+	public void testSerializzazioneDeserializzazione() throws IOException, ClassNotFoundException 
+	{
+		CodaStampa s=new CodaStampa();
+		ProcessoStampa p1=new ProcessoStampa("pc1","word","test");
+		s.aggiungiProcesso(p1);
+		s.salvaStampa("codaStampaTest.bin");
+		CodaStampa stampanteCopia=s.caricaStampa("codaStampaTest.bin");
+		assertTrue("Serializzazione e Deserializzzazione",s.toString().equals(stampanteCopia.toString()));
 	}
 	
 	

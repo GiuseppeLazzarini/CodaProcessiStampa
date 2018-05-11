@@ -4,9 +4,6 @@ import org.junit.Test;
 
 public class ProcessoStampaTest 
 {
-
-	
-	
 	@Test
 	public void testCostruttoreProcessoStampa() 
 	{
