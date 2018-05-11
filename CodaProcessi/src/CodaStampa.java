@@ -4,34 +4,64 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
+/**
+ * La classe rappresenta una stampante condivisa da più computer. Viene gestita secondo una coda, quindi 
+ * come una struttura dati FIFO(First in, First out). Gli attributi che costituiscono la stampante sono 2:
+ * il puntatore head di tipo Nodo che punta all'ultimo elemento della coda e l'attributo elementi che tiene
+ * conto dei nodi inseriti nella stampante.
+ *@author Lazzarini Giuseppe
+ * @version 2.0
+ *
+ */
 public class CodaStampa  implements Serializable
 {
+	//Attributi
 	private Nodo head;
 	private int elementi;
 	
+	/**
+	 * Costruttore.Istanzia una coda di stampa vuota.
+	 */
 	public CodaStampa()
 	{
 		head=null;
 		elementi=0;
 	}
 	
+	/**
+	 * Metodo getter che restituisce il numero di elementi inseriti
+	 * @return elementi
+	 */
 	public int getElementi()
 	{
 		return elementi;
 	}
+	/**
+	 * Metodo getter che restituisce il nodo puntato da head.	 
+	 * @return head
+	 */
 	public Nodo getHead()
 	{
 		return head;
 	}
-	
+	/**
+	 * Metodo privato utilizzato all'interno della classe per aggiungere elementi alla coda.
+	 * @param processo rappresenta la parte informativa del nodo 
+	 * @param link	contiene il reference del prossimo nodo, quindi il collegamento
+	 * @return nodo restituisce il nodo creato
+	 */
 	private Nodo creaNodo(ProcessoStampa processo,Nodo link)
 	{
 		Nodo nodo=new Nodo(processo);
 		nodo.setLink(link);
 		return nodo;
 	}
-	
+	/**
+	 * Metodo privato utilizzato all'interno della classe per ottenere il nodo in una certa posizione.
+	 * @param posizione posizione da cui ricavare il nodo
+	 * @return p il collegamento ottenuto nella posizione richiesta
+	 * @throws StampaException viene sollevata se viene inserita un posizione non valida oppure se la coda è vuota
+	 */
 	private Nodo getLinkPosizione(int posizione) throws StampaException
 	{
 		Nodo p;
@@ -50,6 +80,10 @@ public class CodaStampa  implements Serializable
 		return p;
 	}
 	
+	/**
+	 * Consente di aggiungere un processo alla fase di stampa.
+	 * @param processo processo da inviare alla stampante 
+	 */
 	public void aggiungiProcesso(ProcessoStampa processo)
 	{
 		Nodo p=creaNodo(processo,head);
@@ -57,7 +91,11 @@ public class CodaStampa  implements Serializable
 		elementi++;
 	}
 	
-	
+	/**
+	 * Consente di stampare il primo processo in testa alla coda .
+	 * @return p processo stampato 
+	 * @throws StampaException viene sollevata se la coda è vuota
+	 */
 	public ProcessoStampa stampaProcesso() throws StampaException
 	{
 		if(elementi==0)
@@ -76,7 +114,13 @@ public class CodaStampa  implements Serializable
 		elementi--;
 		return p.getInfo();
 	}
-	
+	/**
+	 * Consente di visualizzare i processi di stampa di un certo PC in ordine alfabetico del nome del file.
+	 * @param nomePc nome del pc da cercare
+	 * @return processiPC array contenente i processi relativi ad un PC in ordine alfabetico
+	 * @throws StampaException viene sollevata se la coda è vuota
+	 * @throws GeneralException viene sollevata quando nessun processo corrisponde al pc inserito
+	 */
 	public ProcessoStampa[]	 processiPcAlfabetico(String nomePc) throws StampaException, GeneralException
 	{
 		if(elementi==0)
@@ -108,6 +152,13 @@ public class CodaStampa  implements Serializable
 		
 		return processiPC;
 	}
+	/**
+	 * Consente di ricavare un processo dalla coda di stampa in base all'ID inserito.
+	 * @param codice codice del pc da cercare 
+	 * @return p processo di stampa 
+	 * @throws StampaException  viene sollevata se la coda è vuota
+	 * @throws GeneralException viene sollevata quando nessun processo corrisponde al ID inserito
+	 */
 	public ProcessoStampa getProcesso (int codice) throws StampaException, GeneralException
 	{
 		if(elementi==0)
@@ -123,6 +174,16 @@ public class CodaStampa  implements Serializable
 		
 	}
 
+	/**
+	 * Consente di annullare  la stampa un processo immettendo il codiceID.
+	 * Inoltre i file cancellati verranno salvati in un file di testo log.txt in formato CSV.
+	 * @param codice codice del processo da annullare 
+	 * @param nameFile nome del file su cui salvare il processo
+	 * @throws StampaException   viene sollevata se la coda è vuota
+	 * @throws GeneralException viene sollevata quando nessun processo corrisponde al ID inserito
+	 * @throws IOException viene sollevata quando si verificano durante la scrittura su file 
+	 * @throws FileException viene sollevata quando vi sono errori relativi al file 
+	 */
 	public void annullaStampa(int codice,String nameFile) throws StampaException, GeneralException, IOException, FileException
 	{
 		if(elementi==0)
@@ -175,6 +236,12 @@ public class CodaStampa  implements Serializable
 		throw new GeneralException("Nessun processo corriponde all'ID indicato");
 	}
 	
+	/**
+	 * Consente di portare in testa alla coda di stampa un processo, e di conseguenza il primo ad essere stampato.
+	 * @param codice  codice del processo da portare in testa 
+	 * @throws StampaException  viene sollevata se la coda è vuota
+	 * @throws GeneralException viene sollevata quando nessun processo corrisponde al ID inserito
+	 */
 	public void portaInTesta (int codice) throws StampaException, GeneralException
 	{
 		if(elementi==0)
