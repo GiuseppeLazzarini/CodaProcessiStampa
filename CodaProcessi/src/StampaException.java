@@ -1,4 +1,9 @@
-
+/**
+ * Eccezione che serve per gestire particolari codizioni della stampante.
+ * Per esempio stampante vuota.
+ * @author Lazzarini Giuseppe
+ *
+ */
 public class StampaException extends Exception 
 {
 	private String messaggio;

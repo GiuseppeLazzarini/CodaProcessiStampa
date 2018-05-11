@@ -181,7 +181,7 @@ public class CodaStampa  implements Serializable
 	 * @param nameFile nome del file su cui salvare il processo
 	 * @throws StampaException   viene sollevata se la coda è vuota
 	 * @throws GeneralException viene sollevata quando nessun processo corrisponde al ID inserito
-	 * @throws IOException viene sollevata quando si verificano durante la scrittura su file 
+	 * @throws IOException viene sollevata quando si verificano errori durante la scrittura su file 
 	 * @throws FileException viene sollevata quando vi sono errori relativi al file 
 	 */
 	public void annullaStampa(int codice,String nameFile) throws StampaException, GeneralException, IOException, FileException
@@ -267,7 +267,10 @@ public class CodaStampa  implements Serializable
 		}
 		throw new GeneralException("Nessun processo corriponde all'ID indicato");
 	}
-	
+	/**
+	 * Metodo toString che restituisce una stringa composta dai processi con i relativi dati
+	 * nel loro rispettivo ordine di coda.
+	 */
 	public String toString()
 	{
 		String risultato="Head";
@@ -281,7 +284,11 @@ public class CodaStampa  implements Serializable
 		}
 		return risultato;
 	}
-	
+	/**
+	 * Consente di salvare gli elementi della stampa, quindi i vari processi su un file binario.
+	 * @param nomeFile nome del file su cui salvare i processi
+	 * @throws IOException viene sollevata quando si verificano errori durante la scrittura su file 
+	 */
 	public void salvaStampa(String nomeFile) throws IOException
 	{
 		FileOutputStream file =new FileOutputStream(nomeFile);
@@ -290,6 +297,14 @@ public class CodaStampa  implements Serializable
 		writer.flush();
 		file.close();
 	}
+	/**
+	 * Consente di caricare gli elementi salvati in precedenza sul file bianario, per ricaricarli 
+	 * all'interno della coda di stampa.
+	 * @param nomeFile nome del file su cui effettuare la lettura
+	 * @return s ritorna una coda di stampa 
+	 * @throws IOException viene sollevata quando si verificano errori durante la lettura da file 
+	 * @throws ClassNotFoundException viene sollevata quando si verifica un'errore di casting 
+	 */
 	public CodaStampa caricaStampa (String nomeFile) throws IOException, ClassNotFoundException
 	{
 		FileInputStream file=new FileInputStream(nomeFile);
