@@ -115,6 +115,14 @@ public class ProcessoStampa implements Serializable
 		return contatore;
 	}
 	/**
+	 * Metodo setter che consente di settare il contatore di processi
+	 * @param c
+	 */
+	public static void setContatore(int c)
+	{
+		contatore=c;
+	}
+	/**
 	 * Metodo  getter che restituisce il codiceID del processo
 	 * @return CodiceID del processo
 	 */

@@ -6,3 +6,7 @@ test;pc1;word;
 ciao;pc2;excel;
 ciao;pc2;excel;
 test;pc1;word;
+test;pc1;word;
+ciao;pc2;excel;
+ciao;pc2;excel;
+test;pc1;word;

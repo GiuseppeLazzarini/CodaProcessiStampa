@@ -21,6 +21,8 @@ public class MainClass {
 		{
 			stampante=stampante.caricaStampa("codaStampa.bin");
 			System.out.println("file caricati");
+			if(stampante.getElementi()!=0)
+				ProcessoStampa.setContatore(stampante.getHead().getInfo().getCodiceID());
 		} catch (ClassNotFoundException e1) 
 		{
 			System.out.println("Impossibile caricare oggetti di tipo ProcessoStampa");
@@ -108,6 +110,7 @@ public class MainClass {
 				
 				try 
 				{
+					
 					System.out.println(stampante.toString());
 					System.out.println("Inserisci codiceID realativo al processo da eliminare");
 					stampante.annullaStampa(tastiera.readInt(), "log.txt");
