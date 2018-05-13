@@ -153,7 +153,7 @@ public class MainClass {
 				} 
 				catch (NumberFormatException e)
 				{
-					System.out.println("Formato dati errato. Operazione annullata.");
+					System.out.println("Formato dati input errato. Operazione annullata.");
 				}
 				catch (StampaException e) 
 				{
