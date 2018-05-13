@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>300</y>
-      <w>360</w>
-      <h>320</h>
+      <x>518</x>
+      <y>238</y>
+      <w>245</w>
+      <h>301</h>
     </coordinates>
     <panel_attributes>ProcessoStampa
 --
 -pc:String
 -tipoDocumento:String
 -nomeFile:String
--data:Data
+-dataOra:LocalDateTime
 -ora:Tempo
+-codiceID:int
+-contatore:int
 --
 +ProcessoStampa(in pc:String, in tipoDocumento:String,
-in nomeFile:String,in data:Data,in ora:Tempo)
+in nomeFile:String)
 +getPc():String
 +setPc(in pc:String)
 +getTipoDocumento():String
 +setTipoDocumento(in tipoDocumento:String)
 +getNomeFile():String
 +setNomeFile(in nomeFile:String)
-+getData():Data
-+setData(in data:Data)
++getDataOra():LocalDateTime
++setData(in dataOra:LocalDateTime)
 +getOra():Tempo
-+setOra(in ora:Tempo)</panel_attributes>
++setOra(in ora:Tempo)
++getCodiceID():int
++setCodiceID(in codice:int)
++getContatore():int
++setContatore(in c:int)
++toString():String
++equals(in P:ProcessoStampa):boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
-      <y>40</y>
-      <w>260</w>
-      <h>170</h>
+      <x>553</x>
+      <y>63</y>
+      <w>182</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>Nodo
 --
@@ -54,24 +62,24 @@ in nomeFile:String,in data:Data,in ora:Tempo)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>200</y>
-      <w>30</w>
-      <h>120</h>
+      <x>581</x>
+      <y>175</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=1
 m1=1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>90</y>
-      <w>130</w>
-      <h>40</h>
+      <x>728</x>
+      <y>98</y>
+      <w>91</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1</panel_attributes>
@@ -80,10 +88,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
-      <y>90</y>
-      <w>30</w>
-      <h>100</h>
+      <x>798</x>
+      <y>98</y>
+      <w>21</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -91,10 +99,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>160</y>
-      <w>130</w>
-      <h>40</h>
+      <x>728</x>
+      <y>147</y>
+      <w>91</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1</panel_attributes>
@@ -103,23 +111,23 @@ m1=0..1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>130</y>
-      <w>210</w>
-      <h>40</h>
+      <x>413</x>
+      <y>126</y>
+      <w>154</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..1</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>130</y>
-      <w>190</w>
-      <h>30</h>
+      <x>434</x>
+      <y>126</y>
+      <w>133</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
@@ -127,21 +135,21 @@ m2=0..1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>230</y>
-      <w>30</w>
-      <h>90</h>
+      <x>581</x>
+      <y>203</y>
+      <w>21</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>70</y>
-      <w>390</w>
-      <h>320</h>
+      <x>147</x>
+      <y>84</y>
+      <w>273</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>CodaStampa
 --

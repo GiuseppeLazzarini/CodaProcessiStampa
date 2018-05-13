@@ -255,6 +255,14 @@ public class CodaStampa  implements Serializable
 			contatore++;
 			if(p.getInfo().getCodiceID()==codice)
 			{
+				if (contatore==1) 
+				{
+					head=getLinkPosizione(contatore+1);
+					Nodo nodoInTesta=getLinkPosizione(elementi);
+					nodoInTesta.setLink(p);
+					p.setLink(null);
+					return;
+				}
 				p=getLinkPosizione(contatore);
 				Nodo precedente=getLinkPosizione(contatore-1);
 				precedente.setLink(p.getLink());

@@ -148,6 +148,8 @@ public class MainClass {
 					stampante.portaInTesta(tastiera.readInt());
 					System.out.println("Ecco la coda di stampa aggiornata: ");
 					System.out.println(stampante.toString());
+					stampante.salvaStampa("codaStampa.bin");
+					System.out.println("salvataggio modifica avvenuta con successo");
 				} 
 				catch (NumberFormatException e)
 				{
